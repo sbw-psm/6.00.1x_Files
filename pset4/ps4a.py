@@ -175,15 +175,35 @@ def isValidWord(word, hand, wordList):
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
-    # TO DO ... <-- Remove this comment when you code this function
 
+    # check whether the word exist in wordList
+    wordExist = False
+    for s in wordList:
+        if s == word:
+            wordExist = True
+            break
+
+    # check whether the word is composed from letters in the hand
+    tempHand = hand.copy()
+    if wordExist == True:
+        for letter in word:
+            if letter not in tempHand.keys():
+                return False
+            else:
+                if tempHand[letter] > 1:
+                    tempHand[letter] -= 1
+                else:
+                    tempHand.pop(letter)
+        return True
+    else:
+        return False
 
 #
 # Problem #4: Playing a hand
 #
 
 def calculateHandlen(hand):
-    """ 
+    """
     Returns the length (number of letters) in the current hand.
     
     hand: dictionary (string-> int)
