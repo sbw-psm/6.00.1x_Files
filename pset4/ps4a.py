@@ -209,7 +209,13 @@ def calculateHandlen(hand):
     hand: dictionary (string-> int)
     returns: integer
     """
-    # TO DO... <-- Remove this comment when you code this function
+    tempHand = hand.copy()
+    handLength = 0
+    for letter in tempHand.keys():
+        while tempHand[letter] >= 1:
+            handLength += 1
+            tempHand[letter] -= 1
+    return handLength
 
 
 
