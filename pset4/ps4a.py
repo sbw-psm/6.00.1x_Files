@@ -278,8 +278,10 @@ def playHand(hand, wordList, n):
 
     if (calculateHandlen(hand) == 0):
         print('Run out of letters. Total score: ' + str(totalScore) + ' points.')
+        print
     else:
         print('Goodbye! Total score: ' + str(totalScore) + ' points.')
+        print
     # Game is over (user entered a '.' or ran out of letters), so tell user the total score
 
 
@@ -299,7 +301,40 @@ def playGame(wordList):
  
     2) When done playing the hand, repeat from step 1    
     """
+    hand = {}
+    handLength = 0
 
+    # calculate hand length
+    tempHand = hand.copy()
+    handLength = 0
+    for letter in tempHand.keys():
+        while tempHand[letter] >= 1:
+            handLength += 1
+            tempHand[letter] -= 1
+
+    choice = raw_input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
+    while (choice != 'e'):
+        if (choice == 'n'):
+            hand = dealHand(HAND_SIZE)
+            playHand(hand, wordList, HAND_SIZE)
+        elif (choice == 'r'):
+            # calculate hand length
+            tempHand = hand.copy()
+            handLength = 0
+            for letter in tempHand.keys():
+                while tempHand[letter] >= 1:
+                    handLength += 1
+                    tempHand[letter] -= 1
+
+            if not (handLength == 0):
+                playHand(hand, wordList, HAND_SIZE)
+            else:
+                print('You have not played a hand yet. Please play a new hand first!')
+                print
+        else:
+            print('Invalid command.')
+            print
+        choice = raw_input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
 
 
 #
@@ -307,4 +342,4 @@ def playGame(wordList):
 #
 if __name__ == '__main__':
     wordList = loadWords()
-    playHand({'w': 1, 's': 1, 't': 2, 'a': 1, 'o': 1, 'f': 1}, wordList, 4)
+    playGame(wordList)
