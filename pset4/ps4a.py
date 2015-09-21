@@ -249,7 +249,8 @@ def playHand(hand, wordList, n):
     handSize = calculateHandlen(hand)
     while (handSize != 0 and handLength != 0):
         # Display the hand
-        print(hand.keys())
+        print('Current hand: '),
+        displayHand(hand)
         # Ask user for input
         s = raw_input('Enter word, or a "." to indicate that you are finished: ')
         # If the input is a single period:
@@ -298,9 +299,6 @@ def playGame(wordList):
  
     2) When done playing the hand, repeat from step 1    
     """
-    # TO DO ... <-- Remove this comment when you code this function
-    print "playGame not yet implemented." # <-- Remove this line when you code the function
-   
 
 
 
