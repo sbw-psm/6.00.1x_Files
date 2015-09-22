@@ -249,6 +249,7 @@ def playHand(hand, wordList, n):
     handSize = calculateHandlen(hand)
     while (handSize != 0 and handLength != 0):
         # Display the hand
+        print
         print('Current hand: '),
         displayHand(hand)
         # Ask user for input
@@ -264,14 +265,14 @@ def playHand(hand, wordList, n):
             if not isValidWord(s, hand, wordList):
                 # Reject invalid word (print a message followed by a blank line)
                 print('Invalid word, please try again.')
-                print
+
             # Otherwise (the word is valid):
             else:
                 # Tell the user how many points the word earned, and the updated total score, in one line followed by a blank line
                 score = getWordScore(s, n)
                 totalScore += score
                 print('"' + s + '" earned ' + str(score) + ' points. ' + 'Total: ' + str(totalScore) + ' points.')
-                print
+
                 # Update the hand 
                 hand = updateHand(hand, s)
                 handLength = calculateHandlen(hand)

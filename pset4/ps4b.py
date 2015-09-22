@@ -1,6 +1,5 @@
 from ps4a import *
 import time
-import sys
 
 
 #
@@ -119,11 +118,10 @@ def playGame(wordList):
         if (choice == 'n'):
             # ask the user to input a 'u' or a 'c'
             player = raw_input('Enter u to have yourself play, c to have the computer play: ')
-            print
             while (player != 'u' and player != 'c'):
                 print('Invalid command.')
-                player = raw_input('Enter u to have yourself play, c to have the computer play: ')
                 print
+                player = raw_input('Enter u to have yourself play, c to have the computer play: ')
 
             if (player == 'u'):
                 hand = dealHand(HAND_SIZE)
@@ -144,11 +142,10 @@ def playGame(wordList):
             if not (handLength == 0):
                 # ask the user to input a 'u' or a 'c'
                 player = raw_input('Enter u to have yourself play, c to have the computer play: ')
-                print
                 while (player != 'u' and player != 'c'):
                     print('Invalid command.')
-                    player = raw_input('Enter u to have yourself play, c to have the computer play: ')
                     print
+                    player = raw_input('Enter u to have yourself play, c to have the computer play: ')
 
                 if (player == 'u'):
                     playHand(hand, wordList, HAND_SIZE)
