@@ -1,5 +1,6 @@
 from ps4a import *
 import time
+import sys
 
 
 #
@@ -110,13 +111,64 @@ def playGame(wordList):
 
     wordList: list (string)
     """
-    # TO DO... <-- Remove this comment when you code this function
-    print "playGame not yet implemented." # <-- Remove this when you code this function
+    hand = {}
+    handLength = 0
 
-        
+    choice = raw_input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
+    while (choice != 'e'):
+        if (choice == 'n'):
+            # ask the user to input a 'u' or a 'c'
+            player = raw_input('Enter u to have yourself play, c to have the computer play: ')
+            print
+            while (player != 'u' and player != 'c'):
+                print('Invalid command.')
+                player = raw_input('Enter u to have yourself play, c to have the computer play: ')
+                print
+
+            if (player == 'u'):
+                hand = dealHand(HAND_SIZE)
+                playHand(hand, wordList, HAND_SIZE)
+            else:
+                hand = dealHand(HAND_SIZE)
+                compPlayHand(hand, wordList, HAND_SIZE)
+
+        elif (choice == 'r'):
+            # calculate hand length
+            tempHand = hand.copy()
+            handLength = 0
+            for letter in tempHand.keys():
+                while tempHand[letter] >= 1:
+                    handLength += 1
+                    tempHand[letter] -= 1
+
+            if not (handLength == 0):
+                # ask the user to input a 'u' or a 'c'
+                player = raw_input('Enter u to have yourself play, c to have the computer play: ')
+                print
+                while (player != 'u' and player != 'c'):
+                    print('Invalid command.')
+                    player = raw_input('Enter u to have yourself play, c to have the computer play: ')
+                    print
+
+                if (player == 'u'):
+                    playHand(hand, wordList, HAND_SIZE)
+                else:
+                    compPlayHand(hand, wordList, HAND_SIZE)
+
+            else:
+                print('You have not played a hand yet. Please play a new hand first!')
+                print
+        elif (choice == 'e'):
+            break
+        else:
+            print('Invalid command.')
+            print
+        choice = raw_input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
+
+
 #
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':
     wordList = loadWords()
-    compPlayHand({'a': 2, 'e': 2, 'i': 2, 'm': 2, 'n': 2, 't': 2}, wordList, 12)
+    playGame(wordList)
